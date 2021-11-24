@@ -20,7 +20,7 @@ class Sidenews extends Component {
                 sidenews: response.data.articles
             })
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.message));
     }
 
     renderItems() {
