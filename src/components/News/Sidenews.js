@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SingleSide from './SingleSide';
 import axios from 'axios';
+import SingleSide from './SingleSide';
 import Error from './Error';
 
 class Sidenews extends Component {
@@ -8,11 +8,12 @@ class Sidenews extends Component {
         super(props);
         this.state = {
             sidenews: [],
+            error: false,
         };
     }
 
     componentDidMount() {
-        const url = `https://newsapi.org/v2/${this.props.news.type}?${this.props.news.query}&apiKey=50e813c0e31640fa83eb61f9a7d96738`;
+        const url = `https://newsapi.org/v2/${this.props.news.type}?${this.props.news.query}&apiKey=ec66ed8fdd4a41cbbb52ec3bb79f0fdd`;
    
         axios.get(url)
         .then((response) => {
@@ -20,7 +21,11 @@ class Sidenews extends Component {
                 sidenews: response.data.articles
             })
         })
-        .catch((error) => console.log(error.message));
+        .catch((error) => {
+            this.setState ({
+                error: true
+            })
+        });
     }
 
     renderItems() {
